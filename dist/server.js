@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const path = require('path');
 const viewsPath = path.join(__dirname, '../src/views');
+const stylesPath = path.join(__dirname, '../src/views/css');
 // Create an Express application
 const app = (0, express_1.default)();
 app.set('views', viewsPath);
@@ -19,7 +20,7 @@ app.get('/hello', (req, res) => {
     res.sendFile(path.join(viewsPath, 'hello.html'));
 });
 // Set up a static files directory (optional, for serving CSS, JS, images, etc.)
-app.use(express_1.default.static(path.join(__dirname, 'public')));
+app.use('/css', express_1.default.static(stylesPath));
 // Specify the port number for the server
 const port = 3000;
 const dynamicMsg = "<h1>What's good with you fam</h1>";

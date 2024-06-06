@@ -5,6 +5,8 @@ import express, { Request, Response } from 'express';
 const path = require('path');
 
 const viewsPath = path.join(__dirname, '../src/views');
+const stylesPath = path.join(__dirname, '../src/views/css');
+
 
 
 
@@ -24,7 +26,8 @@ app.get('/hello', (req: Request, res: Response) => {
 });
 
 // Set up a static files directory (optional, for serving CSS, JS, images, etc.)
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/css', express.static(stylesPath));
+
 
 
 // Specify the port number for the server
