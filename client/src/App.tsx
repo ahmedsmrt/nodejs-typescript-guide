@@ -1,64 +1,37 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import InputField from './components/InputField'
 import './assets/css/output.css'
+import NavBar from './components/NavBar'
+import { Todo } from './model'
+import TodoList from './components/TodoList'
 
 
-let name: string;
-//  the | is the union operator
-let age: number | string;
-let isStudent: boolean = true;
-let hobbies: string[];
-let role: [number, string];
+const App: React.FC = () => {
 
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-// Ways to define a func
-// When defining the return type never returns nothing while void returns null;
-let printName: (name: string) => never;
+  console.log(todo)
+  console.log(todos)
 
-// Reccomended instead of using the any type
-let personName: unknown;
+  const handleAdd = (e: React.FormEvent) => {
+    e.preventDefault();
 
-// Two types of aliases to define objects type & interface
-// Interface makes it easier to combine type guards from different interfaces
-interface User extends Person {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-}
+    if (todo) {
+      setTodos([...todos, { id: Date.now(), todo: todo, isDone: false }])
+      setTodo("");
+    }
+  };
 
-
-type Users = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-}
-
-interface Person {
-  name: string;
-  age?: number;
-}
-
-
-// type Person = {
-//   name: string;
-//   age?: number;
-// }
-
-// let person: Person = {
-//   name: "ahmed",
-//   age: 32
-// }
-
-// let lotsOfPeople: Person[];
-
-function App() {
   return (
-    <>
-      <main className="flex flex-col justify-center w-full h-full items-center mx-auto">
-        Hello {name}!!
-      </main>
-    </>
+    <main className="flex flex-col justify-start w-full h-full items-center mx-auto">
+      <NavBar />
+      <h1 className="text-4xl md:text-6xl my-6">Taskifi</h1>
+
+      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+      <TodoList todos={todos} setTodos={setTodos} />
+
+    </main>
   )
 }
 
