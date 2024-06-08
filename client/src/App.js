@@ -1,41 +1,26 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = require("react");
-const react_svg_1 = __importDefault(require("./assets/react.svg"));
-const vite_svg_1 = __importDefault(require("/vite.svg"));
-require("./App.css");
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { useState } from 'react';
+import './assets/css/output.css';
 function App() {
-    const [message, setMessage] = (0, react_1.useState)('What is up fam');
-    const sendMsg = (req, res) => {
+    const [message, setMessage] = useState('What is up fam');
+    const [msg, setMsg] = useState('What');
+    const sendMsg = async () => {
         try {
+            // Await response from fetch call
+            const apiUrl = import.meta.env.VITE_REACT_APP_URL || '';
+            const response = await fetch(`${apiUrl}/api/hello`);
+            const res = await fetch(`${apiUrl}/api/what`);
+            // Await the text conversion from the response
+            const text = await response.text();
+            const textTwo = await res.text();
+            // Set the message state with the fetched text
+            setMessage(text);
+            setMsg(textTwo);
         }
-        catch (_a) {
+        catch (error) {
+            console.error('Error fetching message:', error);
         }
     };
-    return (<>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={vite_svg_1.default} className="logo" alt="Vite logo"/>
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={react_svg_1.default} className="logo react" alt="React logo"/>
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={sendMsg}>
-          Your Server Message fam is: {message}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>);
+    return (_jsx(_Fragment, { children: _jsxs("div", { className: "flex flex-col justify-center", children: ["Your Server Message fam is: ", message, _jsx("br", {}), "Your Second Server Message fam is: ", msg, _jsx("button", { className: "btn bg-primary", children: "Click Me Shawrty!" })] }) }));
 }
-exports.default = App;
+export default App;

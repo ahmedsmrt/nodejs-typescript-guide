@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "build:tw": "npx tailwindcss -i ./src/views/css/input.css -o ./src/views/css/output.css --watch"
+    "build:tw": "npx tailwindcss -i ./src/assets/css/input.css -o ./src/assets/css/output.css --watch"
   },
   "dependencies": {
     "daisyui": "^4.12.2",
