@@ -18,16 +18,18 @@ const InputField = ({ todo, setTodo, handleAdd }: Props) => {
             handleAdd(e)
             inputRef.current?.blur();
         }}>
-            <div className="flex flex-row justify-center items-center gap-2 w-screen md:w-[900px]">
-                <input
-                    ref={inputRef}
-                    type="text"
-                    onChange={
-                        (e) => setTodo(e.target.value)
-                    }
-                    placeholder="Enter a task here"
-                    className="input input_focus w-full max-w-xl text-base-content rounded-3xl relative" />
-                <button type="submit" className="absolute h-10 !min-h-8 w-10 right-48 btn bg-neutral rounded-full text-base-100 border-0 !shadow-2xl">Go</button>
+            <div className="flex flex-row justify-center items-center gap-2 w-screen lg:w-[900px] relative">
+                <div className="flex flex-row items-center justify-between w-full relative mx-4 md:mx-10">
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        onChange={
+                            (e) => setTodo(e.target.value)
+                        }
+                        placeholder="Enter a task here"
+                        className="input input_focus w-full text-base-content rounded-3xl relative" />
+                    <button type="submit" className="absolute h-10 !min-h-8 w-10 right-1  btn bg-neutral rounded-full text-base-100 border-0 !shadow-2xl">Go</button>
+                </div>
             </div>
         </form>
     )
