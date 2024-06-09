@@ -1,5 +1,6 @@
 import React from 'react'
 import { Todo } from '../model'
+import Task from './Task';
 
 
 
@@ -12,9 +13,9 @@ interface Props {
 
 const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
     return (
-        <div className="todos">
+        <div className="todos mt-6 flex flex-col gap-4 flex-wrap">
             {todos.map(todo => (
-                <li>{todo.todo}</li>
+                <Task todo={todo} key={todo.id} todos={todos} setTodos={setTodos} />
             ))}
         </div>
     )

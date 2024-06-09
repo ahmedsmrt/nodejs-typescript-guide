@@ -4,6 +4,7 @@ import './assets/css/output.css'
 import NavBar from './components/NavBar'
 import { Todo } from './model'
 import TodoList from './components/TodoList'
+import Task from './components/Task'
 
 
 const App: React.FC = () => {
@@ -30,7 +31,6 @@ const App: React.FC = () => {
 
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
       <TodoList todos={todos} setTodos={setTodos} />
-
     </main>
   )
 }
